@@ -12,7 +12,7 @@ import org.springframework.batch.repeat.RepeatStatus;
 
 import com.example.spring.entity.SampleTableEntity;
 
-public class MyBatch implements Tasklet {
+public class MyBatchJob implements Tasklet {
 	static Logger logger = Logger.getLogger("MyBatch");
 	
     @PersistenceContext(type = PersistenceContextType.EXTENDED)
