@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
 
-	<bean id="myBatch" class="com.example.spring.MyBatch"/> 
+	<bean id="myBatch" class="com.example.spring.MyBatchJob"/> 
 
     <batch:job id="myJob1">
         <batch:step id="step1">
