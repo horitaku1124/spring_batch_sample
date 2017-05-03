@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd
-                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <import resource="classpath:META-INF/spring/batchContext.xml"/>
 
     <context:component-scan base-package="com.example.spring"/>
+    <jpa:repositories base-package="com.example.spring.repository"/>
 
     <bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean"/>
 
@@ -17,9 +20,9 @@
 
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close"
           p:driverClassName="com.mysql.jdbc.Driver"
-          p:url="jdbc:mysql://localhost/spring_test?zeroDateTimeBehavior=convertToNull"
-          p:username="root"
-          p:password=""/>
+          p:url="jdbc:mysql://www7152up.sakura.ne.jp:3306/commerce?zeroDateTimeBehavior=convertToNull"
+          p:username="commerce"
+          p:password="commerce"/>
 
     <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
 
