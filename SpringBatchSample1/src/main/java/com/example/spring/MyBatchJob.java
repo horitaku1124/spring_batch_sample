@@ -1,5 +1,7 @@
 package com.example.spring;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
@@ -19,8 +21,8 @@ public class MyBatchJob implements Tasklet {
     @PersistenceContext(type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
 
-//	@Autowired
-//    private SampleTableRepository sampleTableRepo;
+	@Autowired
+    private SampleTableRepository sampleTableRepo;
 
 	public RepeatStatus execute(StepContribution arg0, ChunkContext arg1)
 			throws Exception {
@@ -29,9 +31,10 @@ public class MyBatchJob implements Tasklet {
 		sampleTable.setStatus(100);
 		entityManager.persist(sampleTable);
 		
-//		sampleTableRepo.findAll();
+		List<SampleTableEntity> list = sampleTableRepo.findAll();
 
 		System.out.println("Created SampleTableEntity=" + sampleTable.getId());
+		System.out.println("SampleTableEntity.size=" + list.size());
 		return RepeatStatus.FINISHED;
 	}
 }
