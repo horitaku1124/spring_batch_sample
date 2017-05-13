@@ -33,12 +33,11 @@ public class BatchConfiguration {
                 .build();
     }
     @Bean
-    public Job job(Step step1, Step step2) throws Exception {
+    public Job job(Step step1) throws Exception {
         return jobBuilderFactory.get("job")
                 .incrementer(new RunIdIncrementer())
                 .listener(listener())
                 .start(step1)
-                .next(step2)
                 .build();
     }
 
