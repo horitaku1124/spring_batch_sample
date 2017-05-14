@@ -14,7 +14,9 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.spring.entity.SampleTableEntity;
 import com.example.spring.repository.SampleTableRepository;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MyBatchJob implements Tasklet {
 	static Logger logger = Logger.getLogger("MyBatch");
 	
