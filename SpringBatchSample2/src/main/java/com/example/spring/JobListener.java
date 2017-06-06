@@ -15,5 +15,4 @@ public class JobListener extends JobExecutionListenerSupport {
         super.afterJob(jobExecution);
         System.out.println("ジョブ終了");
     }
-
 }
