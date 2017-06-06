@@ -4,8 +4,21 @@
             <pattern>%d{yyyy-MM-dd HH:mm:ss}|%-5level|%msg ||%class:%line %n</pattern>
         </encoder>
     </appender>
-
-    <logger name="org.hibernate.SQL" level="ERROR"/>
+    <appender name="sqlLog" class="ch.qos.logback.core.FileAppender">
+    	<file>myApp.log</file>
+	    <encoder>
+	      <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+	    </encoder>
+  	</appender>
+  <logger name="org.hibernate.hql">
+    <!-- Showing [value] of logs -->
+    <level value="ERROR"/>
+  </logger>
+  
+  	<!-- additivity is set to multiple appender -->
+    <logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
+    	<appender-ref ref="sqlLog" />
+    </logger>
     <root level="WARN">
         <appender-ref ref="CONSOLE"/>
     </root>

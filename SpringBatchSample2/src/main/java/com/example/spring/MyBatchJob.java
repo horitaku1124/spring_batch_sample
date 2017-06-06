@@ -28,6 +28,7 @@ public class MyBatchJob implements Tasklet {
 
 	public RepeatStatus execute(StepContribution arg0, ChunkContext arg1)
 			throws Exception {
+		logger.info("Execute main job");
 		SampleTableEntity sampleTable = new SampleTableEntity();
 		sampleTable.setName("test name");
 		sampleTable.setStatus(100);
