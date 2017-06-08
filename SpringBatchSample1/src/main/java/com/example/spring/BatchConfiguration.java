@@ -16,34 +16,35 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableBatchProcessing
 public class BatchConfiguration {
-    @Autowired
-    @Qualifier("myBatchJob")
-    private Tasklet myBatchJob;
+  @Autowired
+  @Qualifier("myBatchJob")
+  private Tasklet myBatchJob;
 
-    @Autowired
-    private JobBuilderFactory jobBuilderFactory;
+  @Autowired
+  private JobBuilderFactory jobBuilderFactory;
 
-    @Autowired
-    private StepBuilderFactory stepBuilderFactory;
+  @Autowired
+  private StepBuilderFactory stepBuilderFactory;
 
-    @Bean
-    public Step step1() {
-        return stepBuilderFactory.get("step1")
-                .tasklet(myBatchJob)
-                .build();
-    }
-    @Bean
-    public Job job(Step step1) throws Exception {
-        return jobBuilderFactory.get("job")
-                .incrementer(new RunIdIncrementer())
-                .listener(listener())
-                .start(step1)
-                .build();
-    }
+  @Bean
+  public Step step1() {
+    return stepBuilderFactory.get("step1")
+            .tasklet(myBatchJob)
+            .build();
+  }
 
-    @Bean
-    public JobExecutionListener listener() {
-        return new JobListener();
-    }
+  @Bean
+  public Job job(Step step1) throws Exception {
+    return jobBuilderFactory.get("job")
+            .incrementer(new RunIdIncrementer())
+            .listener(listener())
+            .start(step1)
+            .build();
+  }
+
+  @Bean
+  public JobExecutionListener listener() {
+    return new JobListener();
+  }
 
 }

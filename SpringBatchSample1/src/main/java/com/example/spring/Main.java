@@ -10,8 +10,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Main {
 
-    public static void main(String[] args) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
-        SpringApplication.run(Main.class, args);
+  public static void main(String[] args) 
+      throws JobExecutionAlreadyRunningException, JobRestartException,
+      JobInstanceAlreadyCompleteException, JobParametersInvalidException {
+    SpringApplication.run(Main.class, args);
 //        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 //        {
 //            JobLauncher jobLauncher = context.getBean("jobLauncher", JobLauncher.class);
@@ -20,5 +22,5 @@ public class Main {
 //            JobExecution execution = jobLauncher.run(job, new JobParameters());
 //            System.out.println("Job Exit Status : " + execution.getStatus());
 //        }
-    }
+  }
 }

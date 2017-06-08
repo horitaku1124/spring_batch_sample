@@ -18,26 +18,26 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MyBatchJob implements Tasklet {
-	static Logger logger = Logger.getLogger("MyBatch");
-	
-    @PersistenceContext(type = PersistenceContextType.EXTENDED)
-    private EntityManager entityManager;
+  static Logger logger = Logger.getLogger("MyBatch");
+  
+  @PersistenceContext(type = PersistenceContextType.EXTENDED)
+  private EntityManager entityManager;
 
-	@Autowired
-    private SampleTableRepository sampleTableRepo;
+  @Autowired
+  private SampleTableRepository sampleTableRepo;
 
-	public RepeatStatus execute(StepContribution arg0, ChunkContext arg1)
-			throws Exception {
-		logger.info("Execute main job");
-		SampleTableEntity sampleTable = new SampleTableEntity();
-		sampleTable.setName("test name");
-		sampleTable.setStatus(100);
-		entityManager.persist(sampleTable);
-		
-		List<SampleTableEntity> list = sampleTableRepo.findAll();
+  public RepeatStatus execute(StepContribution arg0, ChunkContext arg1)
+      throws Exception {
+    logger.info("Execute main job");
+    SampleTableEntity sampleTable = new SampleTableEntity();
+    sampleTable.setName("test name");
+    sampleTable.setStatus(100);
+    entityManager.persist(sampleTable);
+    
+    List<SampleTableEntity> list = sampleTableRepo.findAll();
 
-		System.out.println("Created SampleTableEntity=" + sampleTable.getId());
-		System.out.println("SampleTableEntity.size=" + list.size());
-		return RepeatStatus.FINISHED;
-	}
+    System.out.println("Created SampleTableEntity=" + sampleTable.getId());
+    System.out.println("SampleTableEntity.size=" + list.size());
+    return RepeatStatus.FINISHED;
+  }
 }
