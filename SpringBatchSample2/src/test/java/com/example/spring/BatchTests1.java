@@ -10,7 +10,7 @@ import com.example.spring.repository.SampleTableRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SpringBatchSample2ApplicationTests {
+public class BatchTests1 {
 
   @Autowired
   private SampleTableRepository sampleTableRepo;
