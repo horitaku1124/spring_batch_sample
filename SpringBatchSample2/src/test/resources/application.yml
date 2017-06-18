@@ -1,0 +1,14 @@
+spring:
+    main:
+        banner-mode: "off"
+    jpa:
+      database: mysql
+      show-sql: false
+      hibernate:
+        ddl-auto: create-drop
+      database-platform: org.hibernate.dialect.MySQLDialect
+    datasource:
+      url: jdbc:h2:mem:spring_test;MODE=MySQL
+      username: sa
+      password:
+      driverClassName: org.h2.Driver
