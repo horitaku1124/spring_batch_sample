@@ -6,35 +6,33 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.spring.repository.SampleTableRepository;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@Sql("/db-schema.sql")
+@Sql("/db-test-data.sql")
 public class BatchTests3 {
   @Autowired
   private SampleTableRepository sampleTableRepo;
-  @Bean(destroyMethod = "shutdown")
-  public EmbeddedDatabase dataSource() {
-      return new EmbeddedDatabaseBuilder().
-              setType(EmbeddedDatabaseType.H2).
-              addScript("db-schema.sql").
-              addScript("db-test-data.sql").
-              build();
-  }
+
   @Before
   public void setup() {
   }
-  
   @Test
   public void contextLoads() {
-    System.out.println(" -- " + new Exception().getStackTrace()[0].getMethodName());
+    System.out.println(sampleTableRepo.findAll().size());
     assertEquals(1, sampleTableRepo.findAll().size());
   }
 }
