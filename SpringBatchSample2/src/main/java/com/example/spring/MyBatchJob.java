@@ -30,8 +30,8 @@ public class MyBatchJob implements Tasklet {
       throws Exception {
     logger.info("Execute main job");
     SampleTableEntity sampleTable = new SampleTableEntity();
-    sampleTable.setName("test name");
-    sampleTable.setStatus(100);
+    sampleTable.setName("from main batch task");
+    sampleTable.setStatus(1011);
     entityManager.persist(sampleTable);
     
     List<SampleTableEntity> list = sampleTableRepo.findAll();

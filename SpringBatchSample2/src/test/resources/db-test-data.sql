@@ -1,2 +1,2 @@
 INSERT INTO SPRING_TEST.`sample_table` (`id`, `name`, `status`) VALUES
-(1, 'test name', 100);
+(1, 'junit test', 101);
