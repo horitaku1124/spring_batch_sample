@@ -5,8 +5,16 @@
       <pattern>%d{yyyy-MM-dd HH:mm:ss}|%-5level|%msg ||%class:%line %n</pattern>
     </encoder>
   </appender>
+   <appender name="Exec" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/exec.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+    </encoder>
+  </appender>
+  
   <appender name="sqlLog" class="ch.qos.logback.core.FileAppender">
-    <file>myApp.log</file>
+    <file>./logs/sql.log</file>
     <encoder>
       <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
     </encoder>
@@ -19,7 +27,11 @@
   <logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
     <appender-ref ref="sqlLog" />
   </logger>
+  <logger name="com.example.spring" level="INFO" additivity="false">
+    <appender-ref ref="Exec" />
+  </logger>
   <root level="WARN">
     <appender-ref ref="CONSOLE" />
   </root>
+  
 </configuration>

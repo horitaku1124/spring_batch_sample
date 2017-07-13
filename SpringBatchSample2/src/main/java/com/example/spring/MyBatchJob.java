@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MyBatchJob implements Tasklet {
-  static Logger logger = Logger.getLogger("MyBatch");
+  static Logger logger = Logger.getLogger(MyBatchJob.class);
   
   @PersistenceContext(type = PersistenceContextType.EXTENDED)
   private EntityManager entityManager;
@@ -29,6 +29,7 @@ public class MyBatchJob implements Tasklet {
   public RepeatStatus execute(StepContribution arg0, ChunkContext arg1)
       throws Exception {
     logger.info("Execute main job");
+    logger.info("実行");
     SampleTableEntity sampleTable = new SampleTableEntity();
     sampleTable.setName("from main batch task");
     sampleTable.setStatus(1011);
